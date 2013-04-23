@@ -25,13 +25,13 @@ object Huffman {
   // Part 1: Basics
 
   def weight(tree: CodeTree): Int = tree match {
-    case Fork(_, _, _, weight) => weight
-    case Leaf(_, weight)       => weight
+    case t: Fork => t.weight
+    case t: Leaf => t.weight
   }
 
   def chars(tree: CodeTree): List[Char] = tree match {
-    case Fork(_, _, chars, _) => chars
-    case Leaf(chars, _)       => List(chars)
+    case t: Fork => t.chars
+    case t: Leaf => List(t.char)
   }
 
   def makeCodeTree(left: CodeTree, right: CodeTree) =
@@ -76,6 +76,7 @@ object Huffman {
    *   }
    */
   def times(chars: List[Char]): List[(Char, Int)] = chars.groupBy(identity).map(x => (x._1, x._2.length)).toList
+
   /**
    * Returns a list of `Leaf` nodes for a given frequency table `freqs`.
    *
@@ -83,7 +84,7 @@ object Huffman {
    * head of the list should have the smallest weight), where the weight
    * of a leaf is the frequency of the character.
    */
-  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = freqs.sortBy(_._2).map(p => Leaf(p._1, p._2))
+  def makeOrderedLeafList(freqs: List[(Char, Int)]): List[Leaf] = freqs.sortBy(_._2).map(p => Leaf(p._1, p._2)).toList
 
   /**
    * Checks whether the list `trees` contains only one single code tree.
@@ -151,13 +152,12 @@ object Huffman {
         case Nil => textAcc
         case 0 :: _ => decodeHelper(left, bits.tail, textAcc)
         case 1 :: _ => decodeHelper(right, bits.tail, textAcc)
-        case b :: _ => throw new Error("Only {0, 1} are applicable for bits, but got: " + b)
       }
       case Leaf(char, _) => decodeHelper(tree, bits, char :: textAcc)
     }
 
     tree match {
-      case Fork(_, _, _, _) => decodeHelper(tree, bits, List[Char]()).reverse
+      case t: Fork => decodeHelper(tree, bits, List[Char]()).reverse
       case Leaf(char, _) => List(char)
     }
   }
@@ -193,7 +193,7 @@ object Huffman {
       case Fork(left, right, _, _) =>
         if (chars(left).contains(char)) encodeChar(left, char, bitsAcc ::: List(0))
         else encodeChar(right, char, bitsAcc ::: List(1))
-      case Leaf(_, _) => bitsAcc
+      case t: Leaf => bitsAcc
     }
     text.flatMap(char => encodeChar(tree, char, List[Bit]()))
   }
