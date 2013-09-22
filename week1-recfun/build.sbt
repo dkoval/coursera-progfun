@@ -2,7 +2,7 @@ name <<= submitProjectName(pname => "progfun-"+ pname)
 
 version := "1.0.0"
 
-scalaVersion := "2.10.1"
+scalaVersion := "2.10.2"
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
@@ -16,7 +16,7 @@ submitProjectName := "recfun"
 
 // See documentation in ProgFunBuild.scala
 projectDetailsMap := {
-val currentCourseId = "progfun-002"
+val currentCourseId = "progfun-003"
 Map(
   "example" ->  ProjectDetails(
                   packageName = "example",
@@ -59,19 +59,19 @@ Map(
                   assignmentPartId = "CWKgCFCi",
                   maxScore = 10d,
                   styleScoreRatio = 0.2,
-                  courseId=currentCourseId),
-  "simulations" -> ProjectDetails(
-                   packageName = "simulations",
-                   assignmentPartId = "iYs4GARk",
-                   maxScore = 10d,
-                   styleScoreRatio = 0.2,
-                   courseId="progfun2-001"),
-  "interpreter" -> ProjectDetails(
-                   packageName = "interpreter",
-                   assignmentPartId = "1SZhe1Ut",
-                   maxScore = 10d,
-                   styleScoreRatio = 0.2,
-                   courseId="progfun2-001")
+                  courseId=currentCourseId)//,
+  // "simulations" -> ProjectDetails(
+  //                  packageName = "simulations",
+  //                  assignmentPartId = "iYs4GARk",
+  //                  maxScore = 10d,
+  //                  styleScoreRatio = 0.2,
+  //                  courseId="progfun2-001"),
+  // "interpreter" -> ProjectDetails(
+  //                  packageName = "interpreter",
+  //                  assignmentPartId = "1SZhe1Ut",
+  //                  maxScore = 10d,
+  //                  styleScoreRatio = 0.2,
+  //                  courseId="progfun2-001")
 )
 }
 

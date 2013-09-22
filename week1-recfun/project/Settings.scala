@@ -25,8 +25,8 @@ object Settings {
   val submissionJarFileName = "submittedSrc.jar"
 
   // time in seconds that we give scalatest for running
-  val scalaTestTimeout = 240
-  val individualTestTimeout = 30
+  val scalaTestTimeout = 320
+  val individualTestTimeout = 40
 
   // default weight of each test in a GradingSuite, in case no weight is given
   val scalaTestDefaultWeigth = 10
