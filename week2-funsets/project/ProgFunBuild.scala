@@ -138,7 +138,7 @@ object ProgFunBuild extends Build {
                 |  submit <e-mail> <submissionPassword>
                 |
                 |The submission password, which is NOT YOUR LOGIN PASSWORD, can be obtained from the assignment page
-                |  https://class.coursera.org/%s/assignment/index""".format(details.courseId).stripMargin +"\n "
+                |  https:/%s/assignment/index""".format(details.courseId).stripMargin + "\n"
             s.log.error(msg)
             failSubmit()
         }
