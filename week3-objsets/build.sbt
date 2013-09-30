@@ -2,7 +2,7 @@ name <<= submitProjectName(pname => "progfun-"+ pname)
 
 version := "1.0.0"
 
-scalaVersion := "2.10.1"
+scalaVersion := "2.10.2"
 
 scalacOptions ++= Seq("-deprecation", "-feature")
 
@@ -16,7 +16,7 @@ submitProjectName := "objsets"
 
 // See documentation in ProgFunBuild.scala
 projectDetailsMap := {
-val currentCourseId = "progfun-002"
+val currentCourseId = "progfun-003"
 Map(
   "example" ->  ProjectDetails(
                   packageName = "example",
@@ -32,31 +32,31 @@ Map(
                   courseId=currentCourseId),
   "funsets" ->    ProjectDetails(
                   packageName = "funsets",
-                  assignmentPartId = "fBXOL6Qd",
+                  assignmentPartId = "fBXOL6Rd",
                   maxScore = 10d,
                   styleScoreRatio = 0.2,
                   courseId=currentCourseId),
   "objsets" ->    ProjectDetails(
                   packageName = "objsets",
-                  assignmentPartId = "95dMMEz7",
+                  assignmentPartId = "05dMMEz7",
                   maxScore = 10d,
                   styleScoreRatio = 0.2,
                   courseId=currentCourseId),
   "patmat" ->     ProjectDetails(
                   packageName = "patmat",
-                  assignmentPartId = "3gPmpcif",
+                  assignmentPartId = "4gPmpcif",
                   maxScore = 10d,
                   styleScoreRatio = 0.2,
                   courseId=currentCourseId),
   "forcomp" ->    ProjectDetails(
                   packageName = "forcomp",
-                  assignmentPartId = "fG1oZGIO",
+                  assignmentPartId = "fG2oZGIO",
                   maxScore = 10d,
                   styleScoreRatio = 0.2,
                   courseId=currentCourseId),
   "streams" ->    ProjectDetails(
                   packageName = "streams",
-                  assignmentPartId = "CWKgCFCi",
+                  assignmentPartId = "DWKgCFCi",
                   maxScore = 10d,
                   styleScoreRatio = 0.2,
                   courseId=currentCourseId)//,
