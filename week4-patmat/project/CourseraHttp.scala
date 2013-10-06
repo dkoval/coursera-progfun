@@ -7,6 +7,7 @@ import java.io.{IOException, File, FileInputStream}
 import scalaz.Scalaz.{mkIdentity, ValidationNEL}
 
 import Settings._
+import sbt._
 
 case class JsonSubmission(api_state: String, user_info: JsValue, submission_metadata: JsValue, solutions: JsValue, submission_encoding: String, submission: String)
 //case class JsonQueueResult(submission: JsonSubmission)
@@ -172,12 +173,15 @@ object CourseraHttp {
    * SUBMITTING GRADES
    */
 
-  def submitGrade(feedback: String, score: String, apiState: String, apiKey: String, gradeProject: ProjectDetails): ValidationNEL[String, Unit] = {
+  def submitGrade(feedback: String, score: String, apiState: String, apiKey: String, gradeProject: ProjectDetails, logger: Option[Logger]): ValidationNEL[String, Unit] = {
     import DefaultJsonProtocol._
     val baseReq = url(Settings.uploadFeedbackUrl(gradeProject.courseId))
-    val withArgs = baseReq << Map("api_state" -> apiState, "score" -> score, "feedback" -> feedback) <:< Map("X-api-key" -> apiKey)
+    val reqArgs = Map("api_state" -> apiState, "score" -> score, "feedback" -> feedback)
+    val withArgs = baseReq << reqArgs <:< Map("X-api-key" -> apiKey)
+    for (l <- logger) l.debug("Submit grade arguments: " + reqArgs)
     executeRequest(withArgs) { res =>
       try {
+        for (l <- logger) l.debug("Response:" + res)
         val js = JsonParser(res)
         val status = (js \ "status").convertTo[String]
         if (status == "202")

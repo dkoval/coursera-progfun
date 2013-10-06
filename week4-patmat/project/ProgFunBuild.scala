@@ -138,7 +138,7 @@ object ProgFunBuild extends Build {
                 |  submit <e-mail> <submissionPassword>
                 |
                 |The submission password, which is NOT YOUR LOGIN PASSWORD, can be obtained from the assignment page
-                |  https://class.coursera.org/%s/assignment/index""".format(details.courseId).stripMargin +"\n "
+                |  https:/%s/assignment/index""".format(details.courseId).stripMargin + "\n"
             s.log.error(msg)
             failSubmit()
         }
@@ -622,7 +622,7 @@ object ProgFunBuild extends Build {
         if (!GradingFeedback.apiState.isEmpty && !Settings.offlineMode) {
           val scoreString = "%.2f".format(GradingFeedback.totalScore)
           val Value(projectDetails) = projectDetailsR
-          CourseraHttp.submitGrade(GradingFeedback.feedbackString(), scoreString, GradingFeedback.apiState, apiKey, projectDetails) match {
+          CourseraHttp.submitGrade(GradingFeedback.feedbackString(), scoreString, GradingFeedback.apiState, apiKey, projectDetails, logOpt) match {
             case Failure(msgs) =>
               sys.error(msgs.list.mkString("\n"))
             case _ =>
