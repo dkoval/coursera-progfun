@@ -1,16 +1,21 @@
 object Settings {
   // when changing this, also look at 'scripts/gradingImpl' and the files in s3/settings
   // val courseId = "progfun-2012-001"
+  def baseURL(courseId: String) = 
+    if (courseId == "progfun-003")
+      "https://class.coursera.org/" + courseId
+    else
+      "https://epfl.coursera.org/" + courseId
 
-  def challengeUrl(courseId: String) = "https://class.coursera.org/"+ courseId +"/assignment/challenge"
+  def challengeUrl(courseId: String) = baseURL(courseId) + "/assignment/challenge"
 
-  def submitUrl(courseId: String) = "https://class.coursera.org/"+ courseId +"/assignment/submit"
+  def submitUrl(courseId: String) = baseURL(courseId) + "/assignment/submit"
 
-  // def forumUrl(courseId: String) = "https://class.coursera.org/"+ courseId +"/forum/index"
+  // def forumUrl(courseId: String) = baseURL(courseId) "/forum/index"
 
-  // def submitQueueUrl(courseId: String) = "https://class.coursera.org/"+ courseId +"/assignment/api/pending_submission"
+  // def submitQueueUrl(courseId: String) = baseURL(courseId) +"/assignment/api/pending_submission"
 
-  def uploadFeedbackUrl(courseId: String) = "https://class.coursera.org/"+ courseId +"/assignment/api/score"
+  def uploadFeedbackUrl(courseId: String) = baseURL(courseId) + "/assignment/api/score"
 
   val maxSubmitFileSize = {
     val mb = 1024 * 1024

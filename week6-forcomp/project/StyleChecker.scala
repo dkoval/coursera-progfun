@@ -2,6 +2,7 @@ import sbt.File
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import org.scalastyle._
+import Settings._
 
 object StyleChecker {
   val maxResult = 100
@@ -70,7 +71,7 @@ object StyleChecker {
       "Processed " + outputResult.files + " file(s)\n" +
       "Found " + outputResult.errors + " errors\n" +
       "Found " + outputResult.warnings + " warnings\n" +
-      (if (outputResult.errors+outputResult.warnings > 0) "Consult the style guide at https://class.coursera.org/progfun-002/wiki/view?page=GradingPolicy" else "")
+      (if (outputResult.errors+outputResult.warnings > 0) "Consult the style guide at %s/wiki/view?page=GradingPolicy".format(baseURL("progfun-003")) else "")
 
     (msg, score(outputResult))
   }
